@@ -5,7 +5,8 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {
   AUTH_USER,
-  AUTH_ERROR
+  AUTH_ERROR,
+  SIGN_OUT
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -32,6 +33,13 @@ export function signinUser( { email, password }) {
         dispatch( authError( ' Bad Login Info' ) );
       });
   }
+}
+
+export function signOutUser(){
+
+    localStorage.removeItem('token');
+     browserHistory.push( '/' );
+   return { type: SIGN_OUT };
 }
 
 export function authError( error ) {
