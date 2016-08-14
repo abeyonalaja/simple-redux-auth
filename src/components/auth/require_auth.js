@@ -12,7 +12,7 @@ export default function (CompsoedComponent) {
 
     componentWillMount() {
 
-      if( !this.porps.authenticated ) {
+      if( !this.props.authenticated ) {
         this.context.router.push('/');
       }
     }
