@@ -36,8 +36,7 @@ export function signinUser( { email, password }) {
 }
 
 export function signupUser( { email, password } ) {
-  console.log("Got email " + email);
-  console.log("Got password" + password);
+  
   return function(dispatch) {
     axios.post( `${ROOT_URL}/signup`, { email, password } )
       .then( response => {
