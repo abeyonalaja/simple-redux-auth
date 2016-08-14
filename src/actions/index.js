@@ -35,6 +35,22 @@ export function signinUser( { email, password }) {
   }
 }
 
+export function signupUser( { email, password } ) {
+  console.log("Got email " + email);
+  console.log("Got password" + password);
+  return function(dispatch) {
+    axios.post( `${ROOT_URL}/signup`, { email, password } )
+      .then( response => {
+        dispatch( { type: AUTH_USER } );
+        localStorage.setItem( 'token', response.data.token );
+        browserHistory.push('/feature');
+      })
+      .catch( response =>
+        dispatch( authError( 'error' ) )
+      );
+  }
+}
+
 export function signOutUser(){
 
     localStorage.removeItem('token');
@@ -43,7 +59,6 @@ export function signOutUser(){
 }
 
 export function authError( error ) {
-  console.log("err0r ",  error);
   return {
     type    : AUTH_ERROR,
     payload : error
