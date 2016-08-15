@@ -66,7 +66,9 @@ export function authError( error ) {
 
 export function fetchMessage() {
   return function ( dispatch ) {
-    axios.get( ROOT_URL )
+    axios.get( ROOT_URL, {
+      headers: { authorization: localStorage.getItem( 'token' ) }
+    } )
       .then( response => {
         console.log( response );
       })
