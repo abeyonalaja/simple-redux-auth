@@ -36,7 +36,7 @@ export function signinUser( { email, password }) {
 }
 
 export function signupUser( { email, password } ) {
-  
+
   return function(dispatch) {
     axios.post( `${ROOT_URL}/signup`, { email, password } )
       .then( response => {
@@ -62,4 +62,13 @@ export function authError( error ) {
     type    : AUTH_ERROR,
     payload : error
   };
+}
+
+export function fetchMessage() {
+  return function ( dispatch ) {
+    axios.get( ROOT_URL )
+      .then( response => {
+        console.log( response );
+      })
+  }
 }
